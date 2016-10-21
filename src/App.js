@@ -12,16 +12,37 @@ class App extends Component {
     super(props)
 
     this.state = {
-      isUp: false,
-      lastUpTime: new Date( (new Date()).getTime() - 5 * 60 * 1000),
-    }
+			selectedService: 'web',
+			services: [
+				{ key: 'web', isUp: true, lastUpTime: null },
+				{ key: 'db', isUp: false, lastUpTime: new Date((new Date()).getTime() - 5 * 60 * 1000) },
+				{ key: 'mail', isUp: true, lastUpTime: null },
+			],
+		}
+
+		this._switchService = this._switchService.bind(this)
+  }
+
+  _switchService(nextService) {
+		this.setState({ selectedService: nextService })
+	}
+
+  _renderTab(selected, services) {
+    const thisService = services.find(s => s.key === selected )
+    return (
+      <StatusScreen
+        isUp={thisService.isUp}
+        lastUpTime={ thisService.lastUpTime }
+      />
+    )
   }
 
   render() {
+    const { selectedService, services } = this.state;
     return (
       <View style={styles.container} >
-        <StatusScreen  isUp={this.state.isUp} lastUpTime={ this.state.lastUpTime }/>
-        <TabBarContainer />
+        {this._renderTab(selectedService, services)}
+        <TabBarContainer onTabChange={this._switchService} />
       </View>
     );
   }

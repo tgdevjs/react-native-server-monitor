@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import Tabs from 'react-native-tabs';
 
 import TabBarItem from './TabBarItem';
 
 const TabBarContainer = (props) => (
-  <Tabs style={styles.tabContainer}>
+  <Tabs
+    style={styles.tabContainer}
+    onSelect={ comp => {
+      props.onTabChange(comp.props.name)
+    }}
+  >
     <TabBarItem icon="server"  name="web" label="Web" />
     <TabBarItem icon="database" name="db" label="DB" />
     <TabBarItem icon="envelope-o" name="mail" label="Mail" />
   </Tabs>
 );
+
+TabBarContainer.propTypes = {
+  onTabChange: PropTypes.func.isRequired
+}
 
 const styles = StyleSheet.create({
   tabContainer: {
