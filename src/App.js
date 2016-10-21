@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+
+import StatusScreen from './components/StatusScreen';
+
+const isUp = true;
 
 class App extends Component {
   render() {
     return (
       <View style={styles.container} >
-        <Text>Server Monitor</Text>
+        <StatusScreen  isUp={isUp}/>
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
