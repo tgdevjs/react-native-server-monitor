@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import StatusScreen from './components/StatusScreen';
+import TabBarContainer from './components/TabBarContainer';
 
 const isUp = true;
 
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <View style={styles.container} >
         <StatusScreen  isUp={this.state.isUp} lastUpTime={ this.state.lastUpTime }/>
+        <TabBarContainer />
       </View>
     );
   }
