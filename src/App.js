@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import StatusScreen from './components/StatusScreen';
 import TabBarContainer from './components/TabBarContainer';
@@ -40,13 +41,13 @@ class App extends Component {
   render() {
     const { selectedService, services } = this.state;
     return (
-      <View style={styles.container} >
+      <LinearGradient colors={['#313d43', '#4a787a']} style={styles.container} >
         {this._renderTab(selectedService, services)}
         <TabBarContainer
           onTabChange={this._switchService}
           selectedService={ selectedService }
         />
-      </View>
+      </LinearGradient>
     );
   }
 }
