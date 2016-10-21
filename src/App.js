@@ -42,7 +42,10 @@ class App extends Component {
     return (
       <View style={styles.container} >
         {this._renderTab(selectedService, services)}
-        <TabBarContainer onTabChange={this._switchService} />
+        <TabBarContainer
+          onTabChange={this._switchService}
+          selectedService={ selectedService }
+        />
       </View>
     );
   }

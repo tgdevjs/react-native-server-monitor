@@ -2,12 +2,16 @@ import React, { PropTypes } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const TabBarItem = (props) => (
-  <View style={styles.container}>
-    <Icon name={props.icon} style={styles.icon} />
-    <Text style={styles.label}>{props.label}</Text>
-  </View>
-);
+const TabBarItem = (props) => {
+
+  const { icon, label, selected } = props;
+  return (
+    <View style={styles.container}>
+      <Icon name={icon} style={[styles.icon, selected && styles.selectedLabel]} />
+      <Text style={[styles.label, selected && styles.selectedLabel]}>{label}</Text>
+    </View>
+  );
+}
 
 TabBarItem.propTypes = {
   label: PropTypes.string.isRequired,
