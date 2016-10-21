@@ -6,10 +6,20 @@ import StatusScreen from './components/StatusScreen';
 const isUp = true;
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      isUp: false,
+      lastUpTime: new Date( (new Date()).getTime() - 5 * 60 * 1000),
+    }
+  }
+
   render() {
     return (
       <View style={styles.container} >
-        <StatusScreen  isUp={isUp}/>
+        <StatusScreen  isUp={this.state.isUp} lastUpTime={ this.state.lastUpTime }/>
       </View>
     );
   }
